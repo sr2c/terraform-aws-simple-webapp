@@ -1,6 +1,6 @@
 variable "disable_configuration_bucket" {
-  description = "Disable the creation of the configuration bucket."
-  default     = true
+  description = "Disable the creation of the configuration bucket (used by Ansible SSM connection plugin)."
+  default     = false
   type        = bool
 }
 

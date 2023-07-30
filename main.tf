@@ -1,6 +1,6 @@
 module "conf_log" {
   source                       = "sr2c/ec2-conf-log/aws"
-  version                      = "0.0.3"
+  version                      = "0.0.4"
   context                      = module.this.context
   attributes                   = ["conflog"]
   disable_configuration_bucket = var.disable_configuration_bucket
