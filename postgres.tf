@@ -8,6 +8,10 @@ resource "aws_security_group" "allow_rds_access" {
   name        = "${module.this.id}-rds-access"
   description = "Allow access to the database"
   vpc_id      = data.aws_vpc.default.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "random_password" "rds_password" {
