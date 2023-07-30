@@ -49,3 +49,13 @@ variable "rds_engine_version" {
     error_message = "The RDS engine version must be two integers separated by a period."
   }
 }
+
+variable "rds_name" {
+  type    = string
+  default = "webapp"
+}
+
+variable "rds_user" {
+  type    = string
+  default = "webapp"
+}

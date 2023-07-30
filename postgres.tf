@@ -1,6 +1,6 @@
 locals {
   rds_engine_major_version = element(split(".", var.rds_engine_version), 0)
-  postgres_database_uri    = var.rds_engine == "postgres" ? "postgresql://webapp:${random_password.rds_password[0].result}@${module.rds_instance[0].instance_endpoint}/webapp" : ""
+  postgres_database_uri    = var.rds_engine == "postgres" ? "postgresql://${var.rds_user}:${random_password.rds_password[0].result}@${module.rds_instance[0].instance_endpoint}/${var.rds_name}" : ""
 }
 
 resource "aws_security_group" "allow_rds_access" {
@@ -24,8 +24,8 @@ module "rds_instance" {
   context                     = module.this.context
   attributes                  = ["rds"]
   security_group_ids          = [aws_security_group.allow_rds_access[0].id]
-  database_name               = "webapp"
-  database_user               = "webapp"
+  database_name               = var.rds_name
+  database_user               = var.rds_user
   database_password           = random_password.rds_password[0].result
   database_port               = 5432
   storage_type                = "gp2"
